@@ -2,17 +2,21 @@ import "./globals.css";
 
 import localFont from "next/font/local";
 import Layout from "@/components/layout/Layout";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const martel = localFont({
+  src: [
+    { path: "./fonts/Martel/Martel-Regular.ttf", weight: "400" },
+    { path: "./fonts/Martel/Martel-Bold.ttf", weight: "700" },
+    { path: "./fonts/Martel/Martel-ExtraBold.ttf", weight: "800" },
+  ],
+  variable: "--font-display",
 });
 
 export const metadata = {
@@ -21,16 +25,16 @@ export const metadata = {
     "Konza Technopolis, often referred to as Konza City, is a cutting-edge smart city project located in Kenya, designed to be a hub for technology, innovation, and business. Strategically positioned 60 kilometers southeast of Nairobi, Konza City is a key pillar in Kenya's Vision 2030 development plan. It aims to attract tech companies, investors, and startups by offering world-class infrastructure, research facilities, data centers, and educational institutions. Dubbed Silicon Savannah, Konza City aspires to foster economic growth through innovation in ICT, life sciences, and green technologies while providing sustainable urban living.",
 };
 
+export const viewport = {
+  themeColor: "#008234",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${martel.variable} antialiased`}>
         <Analytics />
-        <Layout>
-        {children}
-        </Layout>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
